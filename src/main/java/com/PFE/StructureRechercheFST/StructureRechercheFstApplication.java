@@ -7,7 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class StructureRechercheFstApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(StructureRechercheFstApplication.class, args);
+
 	}
 
 }

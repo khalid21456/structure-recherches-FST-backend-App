@@ -15,12 +15,12 @@ public class Publication {
     private String contenu;
     private Date datePub;
 
-//    @ManyToOne
-//    @JoinColumn(name = "enseignant_publier")
-//    private Enseignant enseignant;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "doctorant_publier")
-//    private Doctorant doctorant;
+    @ManyToOne
+    @JoinColumn(name = "enseignant_publier")
+    private Enseignant enseignant;
+
+    @ManyToOne
+    @JoinColumn(name = "doctorant_publier")
+    private Doctorant doctorant;
 
 }

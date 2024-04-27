@@ -22,8 +22,7 @@ public class Doctorant {
     private Date date_embauche;
     private String address;
 
-//    @OneToMany(mappedBy = "doctorant")
-//    @Cascade(CascadeType.ALL)
-//    private List<Publication> publications;
+    @OneToMany(mappedBy = "doctorant")
+    private List<Publication> publications;
 
 }

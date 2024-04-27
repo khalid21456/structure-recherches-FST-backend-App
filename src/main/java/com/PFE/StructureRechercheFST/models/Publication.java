@@ -1,21 +1,26 @@
 package com.PFE.StructureRechercheFST.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
-@Entity @Data @NoArgsConstructor
+@Entity @Data
 public class Publication {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue
+    private Long id_pub;
     private String titre;
     private String contenu;
     private Date datePub;
+
+//    @ManyToOne
+//    @JoinColumn(name = "enseignant_publier")
+//    private Enseignant enseignant;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "doctorant_publier")
+//    private Doctorant doctorant;
+
 }

@@ -1,16 +1,15 @@
 package com.PFE.StructureRechercheFST.models;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
 
-@Entity @Data @NoArgsConstructor
+import java.util.Date;
+import java.util.List;
+
+@Entity @Data
 public class Enseignant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,4 +20,8 @@ public class Enseignant {
     private String password;
     private String labo;
     private Date dateEmbauche;
+
+//    @OneToMany
+//    private List<Publication> publications;
+
 }

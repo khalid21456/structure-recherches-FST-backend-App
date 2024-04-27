@@ -12,6 +12,7 @@ public class Publication {
     @GeneratedValue
     private Long id_pub;
     private String titre;
+    @Column(columnDefinition = "TEXT")
     private String contenu;
     private Date datePub;
 

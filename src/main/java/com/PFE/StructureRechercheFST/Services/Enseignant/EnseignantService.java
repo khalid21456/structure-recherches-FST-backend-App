@@ -17,6 +17,7 @@ public class EnseignantService {
 
     @Autowired
     private EnseignantDAO enseignantDAO;
+
     public void Publier(Publication publication,Long idPublier) {
         Enseignant enseignant = null;
         if(enseignantDAO.findById(idPublier).isPresent()) {

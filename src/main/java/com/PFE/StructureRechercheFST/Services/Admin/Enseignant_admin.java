@@ -2,7 +2,6 @@ package com.PFE.StructureRechercheFST.Services.Admin;
 
 
 import com.PFE.StructureRechercheFST.DAO.EnseignantDAO;
-import com.PFE.StructureRechercheFST.DAO.PublicationDAO;
 import com.PFE.StructureRechercheFST.models.Enseignant;
 import com.PFE.StructureRechercheFST.models.Publication;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +37,6 @@ public class Enseignant_admin {
                 tempPub.setEnseignant(null);
                 tempPub.setDoctorant(null);
             }
-
         }
         return list;
     }

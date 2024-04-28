@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-
 @RequestMapping("/Admin/Enseignant")
+@SuppressWarnings("unused")
 @CrossOrigin
 public class EnseignantAdminController {
 

@@ -1,6 +1,5 @@
 package com.PFE.StructureRechercheFST.Services.Enseignant;
 
-
 import com.PFE.StructureRechercheFST.DAO.EnseignantDAO;
 import com.PFE.StructureRechercheFST.DAO.PublicationDAO;
 import com.PFE.StructureRechercheFST.models.Enseignant;

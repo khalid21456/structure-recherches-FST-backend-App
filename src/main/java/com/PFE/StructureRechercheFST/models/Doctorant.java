@@ -4,8 +4,6 @@ package com.PFE.StructureRechercheFST.models;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 
 import java.util.Date;
 import java.util.List;
@@ -18,9 +16,14 @@ public class Doctorant {
     private String nom;
     private String prenom;
     private String email;
+    private String these;
     private String password;
-    private Date date_embauche;
+    private Date date_inscri;
     private String address;
+
+    @ManyToOne
+    @JoinColumn(name = "encadrant")
+    private Enseignant encadrant;
 
     @OneToMany(mappedBy = "doctorant")
     private List<Publication> publications;

@@ -8,5 +8,4 @@ public class StructureRechercheFstApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(StructureRechercheFstApplication.class, args);
 	}
-
 }

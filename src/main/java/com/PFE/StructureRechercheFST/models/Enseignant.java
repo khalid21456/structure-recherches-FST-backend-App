@@ -23,6 +23,8 @@ public class Enseignant {
     private String prenom;
     private String email;
     private String password;
+    private String tele;
+    private String address;
     private String labo;
     private Date dateEmbauche;
 

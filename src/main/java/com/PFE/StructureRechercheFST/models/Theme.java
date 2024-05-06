@@ -14,7 +14,9 @@ public class Theme {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nom_theme;
+    private String nomtheme;
+    @Column(columnDefinition = "TEXT")
+    private String contentTheme;
 
 
     @OneToMany(mappedBy = "theme")

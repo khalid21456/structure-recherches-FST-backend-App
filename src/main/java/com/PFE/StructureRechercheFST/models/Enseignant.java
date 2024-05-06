@@ -34,6 +34,7 @@ public class Enseignant {
     @OneToMany(mappedBy = "encadrant")
     private List<Doctorant> doctorants;
 
+
     public Enseignant() {
         super();
     }

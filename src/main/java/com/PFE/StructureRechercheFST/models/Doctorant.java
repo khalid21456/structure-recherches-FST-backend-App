@@ -20,6 +20,8 @@ public class Doctorant {
     private String password;
     private Date date_inscri;
     private String address;
+    private String profile;
+
 
     @ManyToOne
     @JoinColumn(name = "encadrant")

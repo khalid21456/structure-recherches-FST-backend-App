@@ -17,7 +17,7 @@ public class Theme {
     private String nomtheme;
     @Column(columnDefinition = "TEXT")
     private String contentTheme;
-
+    private String imagePath;
 
     @OneToMany(mappedBy = "theme")
     private List<Recherche> recherches;

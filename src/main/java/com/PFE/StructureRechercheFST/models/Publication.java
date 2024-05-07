@@ -15,6 +15,7 @@ public class Publication {
     @Column(columnDefinition = "TEXT")
     private String contenu;
     private Date datePub;
+    private String imagePath;
 
     @ManyToOne
     @JoinColumn(name = "enseignant_publier")

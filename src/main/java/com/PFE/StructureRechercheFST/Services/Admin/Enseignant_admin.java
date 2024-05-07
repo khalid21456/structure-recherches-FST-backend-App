@@ -23,10 +23,11 @@ public class Enseignant_admin {
     @Autowired
     private RandomPasswordGenerator randomPasswordGenerator;
 
-    public void AjouterEnseignant(Enseignant enseignant) {
+    public List<Enseignant> AjouterEnseignant(Enseignant enseignant) {
         enseignant.setDateEmbauche(new Date());
         enseignant.setPassword(randomPasswordGenerator.generatePassword(10));
         enseignantDAO.save(enseignant);
+        return enseignantDAO.findAll();
     }
 
     public List<Enseignant> retournerToutEnseignant() {
@@ -59,8 +60,9 @@ public class Enseignant_admin {
         return enseignants.size();
     }
 
-    public void supprimerEnseignant(Long id) {
+    public List<Enseignant> supprimerEnseignant(Long id) {
         enseignantDAO.deleteById(id);
+        return retournerToutEnseignant();
     }
 
     public EnseignantName getNameById(Long id) {

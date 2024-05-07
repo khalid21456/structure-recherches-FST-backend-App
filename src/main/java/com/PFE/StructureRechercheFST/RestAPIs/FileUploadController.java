@@ -12,23 +12,78 @@ import java.nio.file.Paths;
 @CrossOrigin
 public class FileUploadController {
 
-    // Directory where uploaded files will be stored
-    private static final String UPLOAD_DIR = "src/main/uploads/";
+    // Directories where uploaded files will be stored
+    private static final String UPLOAD_DIR_THEME = "src/main/uploads/Themes/";
+    private static final String UPLOAD_DIR_EVENT = "src/main/uploads/Evenements/";
+    private static final String UPLOAD_DIR_PROFILES = "src/main/uploads/Profiles/";
+    private static final String UPLOAD_DIR_PUBLICATIONS = "src/main/uploads/Publications/";
 
-    @PostMapping("/uploads")
-    public String uploadFile(@RequestParam("file") MultipartFile file) {
+    @PostMapping("/uploads/Theme")
+    public String uploadThemeImage(@RequestParam("file") MultipartFile file) {
         if (file.isEmpty()) {
             return "Please select a file to upload";
         }
         try {
             // Get the file and save it to the uploads directory
             byte[] bytes = file.getBytes();
-            Path path = Paths.get(UPLOAD_DIR + file.getOriginalFilename());
+            Path path = Paths.get(UPLOAD_DIR_THEME + file.getOriginalFilename());
             Files.write(path, bytes);
-            return "File uploaded successfully";
+            return file.getOriginalFilename();
         } catch (IOException e) {
             e.printStackTrace();
             return "Failed to upload file";
         }
     }
+
+    @PostMapping("/uploads/Event")
+    public String uploadEventImage(@RequestParam("file") MultipartFile file) {
+        if (file.isEmpty()) {
+            return "Please select a file to upload";
+        }
+        try {
+            // Get the file and save it to the uploads directory
+            byte[] bytes = file.getBytes();
+            Path path = Paths.get(UPLOAD_DIR_EVENT + file.getOriginalFilename());
+            Files.write(path, bytes);
+            return file.getOriginalFilename();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "Failed to upload file";
+        }
+    }
+
+    @PostMapping("/uploads/Profile")
+    public String uploadProfileImage(@RequestParam("file") MultipartFile file) {
+        if (file.isEmpty()) {
+            return "Please select a file to upload";
+        }
+        try {
+            // Get the file and save it to the uploads directory
+            byte[] bytes = file.getBytes();
+            Path path = Paths.get(UPLOAD_DIR_PROFILES + file.getOriginalFilename());
+            Files.write(path, bytes);
+            return file.getOriginalFilename();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "Failed to upload file";
+        }
+    }
+
+    @PostMapping("/uploads/Publication")
+    public String uploadPublicationImage(@RequestParam("file") MultipartFile file) {
+        if (file.isEmpty()) {
+            return "Please select a file to upload";
+        }
+        try {
+            // Get the file and save it to the uploads directory
+            byte[] bytes = file.getBytes();
+            Path path = Paths.get(UPLOAD_DIR_PUBLICATIONS + file.getOriginalFilename());
+            Files.write(path, bytes);
+            return file.getOriginalFilename();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "Failed to upload file";
+        }
+    }
+
 }

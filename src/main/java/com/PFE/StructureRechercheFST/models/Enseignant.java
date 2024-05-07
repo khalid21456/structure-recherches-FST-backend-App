@@ -27,6 +27,7 @@ public class Enseignant {
     private String address;
     private String labo;
     private Date dateEmbauche;
+    private Date dateNaissance;
     private String profile;
 
     @OneToMany(mappedBy = "enseignant")

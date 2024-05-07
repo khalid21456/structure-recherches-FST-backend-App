@@ -19,8 +19,8 @@ public class EnseignantAdminController {
     private Enseignant_admin enseignant_admin;
 
     @PostMapping("/AjouterEnseignant")
-    public void AjouterEnseignant(@RequestBody Enseignant enseignant) {
-        enseignant_admin.AjouterEnseignant(enseignant);
+    public List<Enseignant> AjouterEnseignant(@RequestBody Enseignant enseignant) {
+        return enseignant_admin.AjouterEnseignant(enseignant);
     }
 
     @GetMapping("/getAll")
@@ -39,8 +39,8 @@ public class EnseignantAdminController {
     }
 
     @DeleteMapping("/deleteEns/{id}")
-    public void supprimerEnseignant(@PathVariable Long id) {
-        enseignant_admin.supprimerEnseignant(id);
+    public List<Enseignant> supprimerEnseignant(@PathVariable Long id) {
+       return enseignant_admin.supprimerEnseignant(id);
     }
 
     @GetMapping("/getNameById/{id}")

@@ -16,12 +16,15 @@ public class Theme_admin {
     @Autowired
     ThemeDAO themeDAO;
 
-    public void AjouterTheme(Theme theme) {
+    public List<Theme> AjouterTheme(Theme theme) {
+        theme.setImagePath("src/main/uploads/Themes/"+theme.getImagePath());
         themeDAO.save(theme);
+        return retournerTousLesThemes();
     }
 
-    public void SupprimerThem(Long id) {
+    public List<Theme> SupprimerTheme(Long id) {
         themeDAO.deleteById(id);
+        return retournerTousLesThemes();
     }
 
     public List<Theme> retournerTousLesThemes() {
@@ -31,9 +34,11 @@ public class Theme_admin {
         Iterator<Recherche> rechercheIterator;
         while(themeIterator.hasNext()) {
             tempTheme = themeIterator.next();
-            rechercheIterator = tempTheme.getRecherches().iterator();
-            while(rechercheIterator.hasNext()) {
-                rechercheIterator.next().setTheme(null);
+            if(tempTheme.getRecherches()!=null) {
+                rechercheIterator = tempTheme.getRecherches().iterator();
+                while(rechercheIterator.hasNext()) {
+                    rechercheIterator.next().setTheme(null);
+                }
             }
 
         }

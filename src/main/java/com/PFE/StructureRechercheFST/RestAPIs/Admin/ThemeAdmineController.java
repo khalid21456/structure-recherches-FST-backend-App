@@ -17,13 +17,13 @@ public class ThemeAdmineController {
     Theme_admin themeAdmin;
 
     @PostMapping("/AjouterTheme")
-    public void AjouterTheme(@RequestBody Theme theme) {
-        themeAdmin.AjouterTheme(theme);
+    public List<Theme> AjouterTheme(@RequestBody Theme theme) {
+        return themeAdmin.AjouterTheme(theme);
     }
 
     @DeleteMapping("/SupprimerTheme/{id}")
-    public void SupprimerThem(@PathVariable Long id) {
-        themeAdmin.SupprimerThem(id);
+    public List<Theme> SupprimerTheme(@PathVariable Long id) {
+        return themeAdmin.SupprimerTheme(id);
     }
 
     @GetMapping("/retournerTousLesThemes")

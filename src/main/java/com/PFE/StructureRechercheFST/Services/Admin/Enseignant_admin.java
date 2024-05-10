@@ -26,6 +26,7 @@ public class Enseignant_admin {
     public List<Enseignant> AjouterEnseignant(Enseignant enseignant) {
         enseignant.setDateEmbauche(new Date());
         enseignant.setPassword(randomPasswordGenerator.generatePassword(10));
+        enseignant.setProfile("src/main/uploads/Profiles/"+enseignant.getProfile());
         enseignantDAO.save(enseignant);
         return enseignantDAO.findAll();
     }

@@ -13,10 +13,10 @@ import java.nio.file.Paths;
 public class FileUploadController {
 
     // Directories where uploaded files will be stored
-    private static final String UPLOAD_DIR_THEME = "src/main/uploads/Themes/";
-    private static final String UPLOAD_DIR_EVENT = "src/main/uploads/Evenements/";
-    private static final String UPLOAD_DIR_PROFILES = "src/main/uploads/Profiles/";
-    private static final String UPLOAD_DIR_PUBLICATIONS = "src/main/uploads/Publications/";
+    private static final String UPLOAD_DIR_THEME = "src/main/resources/uploads/Themes/";
+    private static final String UPLOAD_DIR_EVENT = "src/main/resources/uploads/Evenements/";
+    private static final String UPLOAD_DIR_PROFILES = "src/main/resources/uploads/Profiles/";
+    private static final String UPLOAD_DIR_PUBLICATIONS = "src/main/resources/uploads/Publications/";
 
     @PostMapping("/uploads/Theme")
     public String uploadThemeImage(@RequestParam("file") MultipartFile file) {

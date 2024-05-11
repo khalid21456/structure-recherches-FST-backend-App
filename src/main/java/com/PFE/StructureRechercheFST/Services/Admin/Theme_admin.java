@@ -17,7 +17,9 @@ public class Theme_admin {
     ThemeDAO themeDAO;
 
     public List<Theme> AjouterTheme(Theme theme) {
-        theme.setImagePath("src/main/uploads/Themes/"+theme.getImagePath());
+        if(theme.getImagePath().isEmpty()) {
+            theme.setImagePath("noneTheme.png");
+        }
         themeDAO.save(theme);
         return retournerTousLesThemes();
     }

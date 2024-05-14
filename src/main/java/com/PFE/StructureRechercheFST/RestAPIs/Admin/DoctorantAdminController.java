@@ -7,6 +7,7 @@ import com.PFE.StructureRechercheFST.models.Doctorant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.print.Doc;
 import java.util.List;
 
 @RestController
@@ -24,13 +25,18 @@ public class DoctorantAdminController {
     }
 
     @PostMapping("/AjouterDoctorant")
-    public void ajouterDoctorant(@RequestBody Doctorant doctorant) {
-        doctorant_admin.AjouterDoctorant(doctorant);
+    public List<Doctorant> ajouterDoctorant(@RequestBody Doctorant doctorant) {
+        return doctorant_admin.AjouterDoctorant(doctorant);
     }
 
     @GetMapping("/countDoctorants")
     public int countDoctorants() {
         return doctorant_admin.countDoctorants();
+    }
+
+    @DeleteMapping("/deleteDoc/{id}")
+    public List<Doctorant> supprimerDoctorant(@PathVariable Long id) {
+        return doctorant_admin.supprimerDoctorant(id);
     }
 
 }

@@ -26,9 +26,11 @@ public class Enseignant_admin {
     public List<Enseignant> AjouterEnseignant(Enseignant enseignant) {
         enseignant.setDateEmbauche(new Date());
         enseignant.setPassword(randomPasswordGenerator.generatePassword(10));
-        enseignant.setProfile("src/main/uploads/Profiles/"+enseignant.getProfile());
+        if(enseignant.getProfile().isEmpty()) {
+            enseignant.setProfile("userUnknown.png");
+        }
         enseignantDAO.save(enseignant);
-        return enseignantDAO.findAll();
+        return retournerToutEnseignant();
     }
 
     public List<Enseignant> retournerToutEnseignant() {
@@ -42,11 +44,14 @@ public class Enseignant_admin {
             tempEns = iterator.next();
             tempEns.setDoctorants(null);
             pubs = tempEns.getPublications();
-            iteratorPubs = pubs.iterator();
+            if(pubs!=null) {
+                iteratorPubs = pubs.iterator();
+
             while(iteratorPubs.hasNext()) {
                 tempPub = iteratorPubs.next();
                 tempPub.setEnseignant(null);
                 tempPub.setDoctorant(null);
+            }
             }
         }
         return list;

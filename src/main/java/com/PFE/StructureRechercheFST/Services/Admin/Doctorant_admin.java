@@ -2,6 +2,7 @@ package com.PFE.StructureRechercheFST.Services.Admin;
 
 
 import com.PFE.StructureRechercheFST.DAO.DoctorantDAO;
+import com.PFE.StructureRechercheFST.Services.RandomPasswordGenerator;
 import com.PFE.StructureRechercheFST.models.Doctorant;
 import com.PFE.StructureRechercheFST.models.Enseignant;
 import com.PFE.StructureRechercheFST.models.Publication;
@@ -18,6 +19,9 @@ public class Doctorant_admin {
 
     @Autowired
     private DoctorantDAO doctorantDAO;
+
+    @Autowired
+    private RandomPasswordGenerator randomPasswordGenerator;
 
     public List<Doctorant> retournerTousDoctorants() {
         List<Doctorant> list = doctorantDAO.findAll();
@@ -41,14 +45,24 @@ public class Doctorant_admin {
         return list;
     }
 
-    public void AjouterDoctorant(Doctorant doctorant) {
+    public List<Doctorant> AjouterDoctorant(Doctorant doctorant) {
         doctorant.setDate_inscri(new Date());
+        doctorant.setPassword(randomPasswordGenerator.generatePassword(10));
+        if(doctorant.getProfile().isEmpty()) {
+            doctorant.setProfile("userUnknown.png");
+        }
         doctorantDAO.save(doctorant);
+        return doctorantDAO.findAll();
     }
 
     public int countDoctorants() {
         List<Doctorant> doctorants = doctorantDAO.findAll();
         return doctorants.size();
+    }
+
+    public List<Doctorant> supprimerDoctorant(Long id) {
+        doctorantDAO.deleteById(id);
+        return retournerTousDoctorants();
     }
 
 }

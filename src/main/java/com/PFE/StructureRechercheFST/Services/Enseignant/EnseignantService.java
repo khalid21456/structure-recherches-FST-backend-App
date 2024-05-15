@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 @SuppressWarnings("unused")
@@ -27,6 +28,10 @@ public class EnseignantService {
         publication.setDatePub(new Date());
         publication.setEnseignant(enseignant);
         publicationDAO.save(publication);
+    }
+    public List<Publication> listPublications() {
+        List<Publication> allPublications = publicationDAO.findAll();
+        return allPublications;
     }
 
 

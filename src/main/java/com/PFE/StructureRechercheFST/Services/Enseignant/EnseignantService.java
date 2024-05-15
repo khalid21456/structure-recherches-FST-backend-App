@@ -7,6 +7,8 @@ import com.PFE.StructureRechercheFST.models.Publication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 @Service
 @SuppressWarnings("unused")
 public class EnseignantService {
@@ -22,6 +24,7 @@ public class EnseignantService {
         if(enseignantDAO.findById(idPublier).isPresent()) {
             enseignant = enseignantDAO.findById(idPublier).get();
         }
+        publication.setDatePub(new Date());
         publication.setEnseignant(enseignant);
         publicationDAO.save(publication);
     }

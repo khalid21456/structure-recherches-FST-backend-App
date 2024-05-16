@@ -16,7 +16,6 @@ public class Doctorant {
     private String nom;
     private String prenom;
     private String email;
-    private String these;
     private String password;
     private Date date_inscri;
     private String address;
@@ -29,5 +28,9 @@ public class Doctorant {
 
     @OneToMany(mappedBy = "doctorant")
     private List<Publication> publications;
+
+    @ManyToOne
+    @JoinColumn(name = "These")
+    private Recherche these;
 
 }

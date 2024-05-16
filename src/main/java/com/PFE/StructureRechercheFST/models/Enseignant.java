@@ -18,7 +18,6 @@ public class Enseignant {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nom;
-
     //@JsonProperty("firstName")  Renommer la proprité Json
     private String prenom;
     private String email;

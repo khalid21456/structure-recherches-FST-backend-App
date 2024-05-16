@@ -9,6 +9,7 @@ import com.PFE.StructureRechercheFST.models.Publication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -77,5 +78,19 @@ public class Enseignant_admin {
         String fullName = enseignant.getPrenom()+" "+enseignant.getNom();
         enseignantName.setFullName(fullName);
         return enseignantName;
+    }
+
+    public List<String> retournerName() {
+        List<Enseignant> enseignants = retournerToutEnseignant();
+        List<String> names = new ArrayList<String>();
+        if(enseignants!=null) {
+            Iterator<Enseignant> iterator = enseignants.iterator();
+            Enseignant enseignant;
+            while(iterator.hasNext()) {
+                enseignant = iterator.next();
+                names.add(enseignant.getPrenom()+" "+enseignant.getNom());
+            }
+        }
+        return names;
     }
 }

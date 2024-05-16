@@ -24,9 +24,9 @@ public class DoctorantAdminController {
         return doctorant_admin.retournerTousDoctorants();
     }
 
-    @PostMapping("/AjouterDoctorant")
-    public List<Doctorant> ajouterDoctorant(@RequestBody Doctorant doctorant) {
-        return doctorant_admin.AjouterDoctorant(doctorant);
+    @PostMapping("/AjouterDoctorant/{name}/{these}")
+    public List<Doctorant> ajouterDoctorant(@RequestBody Doctorant doctorant,@PathVariable String name,@PathVariable String these) {
+        return doctorant_admin.AjouterDoctorant(doctorant,name,these);
     }
 
     @GetMapping("/countDoctorants")

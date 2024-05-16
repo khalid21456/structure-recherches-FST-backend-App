@@ -47,4 +47,9 @@ public class EnseignantAdminController {
     public EnseignantName getNameById(@PathVariable Long id) {
         return enseignant_admin.getNameById(id);
     }
+
+    @GetMapping("/getNames")
+    public List<String> retournerName() {
+        return enseignant_admin.retournerName();
+    }
 }

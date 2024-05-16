@@ -6,7 +6,9 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
+@SuppressWarnings("unused")
 public interface EnseignantDAO extends JpaRepository<Enseignant,Long> {
 
+    Enseignant findByNomContaining(String nom);
 
 }

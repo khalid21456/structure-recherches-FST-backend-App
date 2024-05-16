@@ -43,12 +43,17 @@ public class Doctorant_admin {
             tempDoc = iterator.next();
             tempDoc.getEncadrant().setPublications(null);
             tempDoc.getEncadrant().setDoctorants(null);
+//            tempDoc.setThese(null);
+            tempDoc.getThese().setTheme(null);
+            tempDoc.getThese().setCandidat(null);
             pubs = tempDoc.getPublications();
-            iteratorPubs = pubs.iterator();
-            while(iteratorPubs.hasNext()) {
-                tempPub = iteratorPubs.next();
-                tempPub.setEnseignant(null);
-                tempPub.setDoctorant(null);
+            if(pubs != null) {
+                iteratorPubs = pubs.iterator();
+                while (iteratorPubs.hasNext()) {
+                    tempPub = iteratorPubs.next();
+                    tempPub.setEnseignant(null);
+                    tempPub.setDoctorant(null);
+                }
             }
         }
         return list;
@@ -66,7 +71,7 @@ public class Doctorant_admin {
         encadrant.setPublications(null);
         doctorant.setDate_inscri(new Date());
         doctorant.setPassword(randomPasswordGenerator.generatePassword(10));
-        if(doctorant.getProfile().isEmpty()) {
+        if(doctorant.getProfile().equals("")) {
             doctorant.setProfile("userUnknown.png");
         }
         doctorantDAO.save(doctorant);

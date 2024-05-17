@@ -35,6 +35,9 @@ public class Enseignant {
     @OneToMany(mappedBy = "encadrant")
     private List<Doctorant> doctorants;
 
+    @ManyToOne
+    @JoinColumn(name = "equipe")
+    private Equipe equipe;
 
     public Enseignant() {
         super();

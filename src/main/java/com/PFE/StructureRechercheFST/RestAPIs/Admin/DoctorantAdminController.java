@@ -2,12 +2,10 @@ package com.PFE.StructureRechercheFST.RestAPIs.Admin;
 
 
 import com.PFE.StructureRechercheFST.Services.Admin.Doctorant_admin;
-import com.PFE.StructureRechercheFST.Services.Admin.Enseignant_admin;
 import com.PFE.StructureRechercheFST.models.Doctorant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.print.Doc;
 import java.util.List;
 
 @RestController

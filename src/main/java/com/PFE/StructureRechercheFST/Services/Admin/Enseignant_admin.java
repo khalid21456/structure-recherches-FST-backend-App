@@ -45,6 +45,7 @@ public class Enseignant_admin {
         while(iterator.hasNext()) {
             tempEns = iterator.next();
             tempEns.setDoctorants(null);
+            tempEns.setEquipe(null);
             pubs = tempEns.getPublications();
             if(pubs!=null) {
                 iteratorPubs = pubs.iterator();

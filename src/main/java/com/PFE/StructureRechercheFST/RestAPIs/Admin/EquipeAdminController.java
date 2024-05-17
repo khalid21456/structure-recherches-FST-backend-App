@@ -2,6 +2,7 @@ package com.PFE.StructureRechercheFST.RestAPIs.Admin;
 
 
 import com.PFE.StructureRechercheFST.Services.Admin.Equipe_Admin;
+import com.PFE.StructureRechercheFST.models.Enseignant;
 import com.PFE.StructureRechercheFST.models.Equipe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +26,16 @@ public class EquipeAdminController {
     @GetMapping("/getAll")
     public List<Equipe> getEquipes() {
         return equipeAdmin.getEquipes();
+    }
+
+    @PutMapping("/addMembre/{idEquipe}")
+    public void AjouterMembre(@RequestBody List<Enseignant> enseignants, @PathVariable Long idEquipe) {
+        equipeAdmin.AjouterMembre(enseignants,idEquipe);
+    }
+
+    @GetMapping("/getById/{id}")
+    public Equipe getEquipeById(@PathVariable Long id) {
+        return equipeAdmin.getEquipeById(id);
     }
 
 }

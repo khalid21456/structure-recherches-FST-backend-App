@@ -2,6 +2,7 @@ package com.PFE.StructureRechercheFST.RestAPIs.Admin;
 
 
 import com.PFE.StructureRechercheFST.Services.Admin.Equipe_Admin;
+import com.PFE.StructureRechercheFST.models.DTO.EncadrantLabel;
 import com.PFE.StructureRechercheFST.models.Enseignant;
 import com.PFE.StructureRechercheFST.models.Equipe;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +19,9 @@ public class EquipeAdminController {
     @Autowired
     private Equipe_Admin equipeAdmin;
 
-    @PostMapping("/AjouterEquipe")
-    public void AjouterEquipe(@RequestBody Equipe equipe) {
-        equipeAdmin.AjouterEquipe(equipe);
+    @PostMapping("/AjouterEquipe/{responsable}")
+    public List<Equipe> AjouterEquipe(@RequestBody Equipe equipe,@PathVariable String responsable) {
+        return equipeAdmin.AjouterEquipe(equipe,responsable);
     }
 
     @GetMapping("/getAll")
@@ -36,6 +37,16 @@ public class EquipeAdminController {
     @GetMapping("/getById/{id}")
     public Equipe getEquipeById(@PathVariable Long id) {
         return equipeAdmin.getEquipeById(id);
+    }
+
+    @PostMapping("/addSeulMembre/{id}")
+    public void AjouterUnSeulMembre(@RequestBody EncadrantLabel name, @PathVariable long id) {
+        equipeAdmin.AjouterUnSeulMembre(name,id);
+    }
+
+    @GetMapping("/getChoicesMembre")
+    public List<EncadrantLabel> getChoices() {
+        return equipeAdmin.getMembreChoices();
     }
 
 }

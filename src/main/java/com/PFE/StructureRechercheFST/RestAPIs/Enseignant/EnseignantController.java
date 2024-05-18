@@ -2,6 +2,7 @@ package com.PFE.StructureRechercheFST.RestAPIs.Enseignant;
 
 
 import com.PFE.StructureRechercheFST.Services.Enseignant.EnseignantService;
+import com.PFE.StructureRechercheFST.models.Evenement;
 import com.PFE.StructureRechercheFST.models.Publication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,13 +23,38 @@ public class EnseignantController {
         enseignantService.Publier(publication,idPublier);
     }
     @GetMapping("/allPublication")
-    public List<Publication> listPublication() {
-        List<Publication> allPublications = enseignantService.listPublications();
+    public  List<Publication> listPublications() {
+        List<Publication> allPublications = enseignantService.allPublications();
         allPublications.forEach(p->{
             p.setEnseignant(null);
             p.setDoctorant(null);
         });
-        return  allPublications;
+        return allPublications;
     }
-
+//    @GetMapping("/publicationsList/{id}")
+//    public List<Publication> allPublicationById(@PathVariable Long id){
+//        List<Publication> publicationList = enseignantService.getAllPublicationById(id);
+//        publicationList.forEach(p->{
+//            p.setEnseignant(null);
+//            p.setDoctorant(null);
+//        });
+//        return publicationList;
+//    }
+       @GetMapping("/publicationsByEnseignant/{id}")
+       public List<Publication> allPublicationsByEnseignant(@PathVariable Long id) {
+              List<Publication> publicationList = enseignantService.getAllPublicationsByEnseignantId(id);
+                    publicationList.forEach(p -> {
+                            p.setEnseignant(null);
+                            p.setDoctorant(null);
+          });
+                     return publicationList;
+      }
+      @PostMapping("/organiser")
+      public void organiserEvenement(@RequestBody Evenement evenement) {
+        enseignantService.organiser(evenement);
+      }
+      @GetMapping("/countPublication/{id}")
+      public int countPublicationByEnseignant(@PathVariable Long id){
+        return enseignantService.coutPublicationByEnseignantId(id);
+     }
 }

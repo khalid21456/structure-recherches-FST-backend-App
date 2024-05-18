@@ -1,13 +1,15 @@
 package com.PFE.StructureRechercheFST.Services.Enseignant;
 
 import com.PFE.StructureRechercheFST.DAO.EnseignantDAO;
+import com.PFE.StructureRechercheFST.DAO.EvenementDAO;
 import com.PFE.StructureRechercheFST.DAO.PublicationDAO;
-import com.PFE.StructureRechercheFST.models.Enseignant;
-import com.PFE.StructureRechercheFST.models.Publication;
+import com.PFE.StructureRechercheFST.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -19,6 +21,8 @@ public class EnseignantService {
 
     @Autowired
     private EnseignantDAO enseignantDAO;
+    @Autowired
+    private EvenementDAO evenementDAO;
 
     public void Publier(Publication publication,Long idPublier) {
         Enseignant enseignant = null;
@@ -29,10 +33,23 @@ public class EnseignantService {
         publication.setEnseignant(enseignant);
         publicationDAO.save(publication);
     }
-    public List<Publication> listPublications() {
+
+    public List<Publication> allPublications() {
         List<Publication> allPublications = publicationDAO.findAll();
         return allPublications;
     }
-
-
+//    public List<Publication> getAllPublicationById(Long id){
+//        List<Publication> publicationList = publicationDAO.findAllById(Collections.singleton(id));
+//        return publicationList;
+//    }
+     public List<Publication> getAllPublicationsByEnseignantId(Long enseignantId) {
+           return publicationDAO.findByEnseignantId(enseignantId);
+    }
+    public void organiser(Evenement evenement){
+        evenementDAO.save(evenement);
+    }
+    public int coutPublicationByEnseignantId(Long enseignantId) {
+        List<Publication> allPublicationByEnseignant = publicationDAO.findByEnseignantId(enseignantId);
+        return allPublicationByEnseignant.size();
+    }
 }

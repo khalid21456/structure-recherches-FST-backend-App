@@ -69,4 +69,21 @@ public class ImageController {
                 .body(resource);
 
     }
+    @GetMapping("/Evenements/{imageName}")
+    public ResponseEntity<Resource> getEvenementImage(@PathVariable String imageName) throws IOException {
+        Resource resource;
+        resource = new ClassPathResource("uploads/Evenements/"+imageName);
+        MediaType contentType;
+        if (imageName.toLowerCase().endsWith(".png")) {
+            contentType = MediaType.IMAGE_PNG;
+        } else if (imageName.toLowerCase().endsWith(".jpg") || imageName.toLowerCase().endsWith(".jpeg")) {
+            contentType = MediaType.IMAGE_JPEG;
+        } else {
+            contentType = MediaType.IMAGE_JPEG;
+        }
+        return ResponseEntity.ok()
+                .contentType(contentType)
+                .body(resource);
+
+    }
 }

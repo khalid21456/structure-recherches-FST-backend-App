@@ -42,7 +42,6 @@ public class Theme_admin {
                     rechercheIterator.next().setTheme(null);
                 }
             }
-
         }
         return themeList;
     }

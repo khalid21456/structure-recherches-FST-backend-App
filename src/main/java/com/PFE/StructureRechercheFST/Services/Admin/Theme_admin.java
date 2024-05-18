@@ -33,13 +33,16 @@ public class Theme_admin {
         List<Theme> themeList = themeDAO.findAll();
         Theme tempTheme;
         Iterator<Theme> themeIterator = themeList.iterator();
+        Recherche recherche;
         Iterator<Recherche> rechercheIterator;
         while(themeIterator.hasNext()) {
             tempTheme = themeIterator.next();
             if(tempTheme.getRecherches()!=null) {
                 rechercheIterator = tempTheme.getRecherches().iterator();
                 while(rechercheIterator.hasNext()) {
-                    rechercheIterator.next().setTheme(null);
+                    recherche = rechercheIterator.next();
+                    recherche.setTheme(null);
+                    recherche.setCandidat(null);
                 }
             }
         }

@@ -2,6 +2,7 @@ package com.PFE.StructureRechercheFST.RestAPIs.Admin;
 
 
 import com.PFE.StructureRechercheFST.Services.Admin.Recherche_admin;
+import com.PFE.StructureRechercheFST.models.DTO.TheseLabel;
 import com.PFE.StructureRechercheFST.models.Recherche;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -26,7 +27,7 @@ public class RechercheAdminController {
     }
 
     @GetMapping("/getTitles")
-    public List<String> retournerTitre() {
+    public List<TheseLabel> retournerTitre() {
         return rechercheAdmin.retournerTitres();
     }
 

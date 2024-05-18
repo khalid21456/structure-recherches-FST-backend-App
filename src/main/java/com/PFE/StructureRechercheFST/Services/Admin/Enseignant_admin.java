@@ -3,6 +3,7 @@ package com.PFE.StructureRechercheFST.Services.Admin;
 
 import com.PFE.StructureRechercheFST.DAO.EnseignantDAO;
 import com.PFE.StructureRechercheFST.Services.RandomPasswordGenerator;
+import com.PFE.StructureRechercheFST.models.DTO.EncadrantLabel;
 import com.PFE.StructureRechercheFST.models.DTO.EnseignantName;
 import com.PFE.StructureRechercheFST.models.Enseignant;
 import com.PFE.StructureRechercheFST.models.Publication;
@@ -44,6 +45,7 @@ public class Enseignant_admin {
         while(iterator.hasNext()) {
             tempEns = iterator.next();
             tempEns.setDoctorants(null);
+            tempEns.setEquipe(null);
             pubs = tempEns.getPublications();
             if(pubs!=null) {
                 iteratorPubs = pubs.iterator();
@@ -80,17 +82,23 @@ public class Enseignant_admin {
         return enseignantName;
     }
 
-    public List<String> retournerName() {
+    public List<EncadrantLabel> retournerName() {
         List<Enseignant> enseignants = retournerToutEnseignant();
-        List<String> names = new ArrayList<String>();
+        List<EncadrantLabel> encadrantLabels = new ArrayList<EncadrantLabel>();
+
+        int i = 0;
         if(enseignants!=null) {
             Iterator<Enseignant> iterator = enseignants.iterator();
             Enseignant enseignant;
             while(iterator.hasNext()) {
+                i++;
+                EncadrantLabel encadrantLabelOne = new EncadrantLabel();
                 enseignant = iterator.next();
-                names.add(enseignant.getPrenom()+" "+enseignant.getNom());
+                encadrantLabelOne.setValue(i);
+                encadrantLabelOne.setLabel(enseignant.getPrenom()+" "+enseignant.getNom());
+                encadrantLabels.add(encadrantLabelOne);
             }
         }
-        return names;
+        return encadrantLabels;
     }
 }

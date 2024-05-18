@@ -2,6 +2,7 @@ package com.PFE.StructureRechercheFST.RestAPIs.Admin;
 
 
 import com.PFE.StructureRechercheFST.Services.Admin.Enseignant_admin;
+import com.PFE.StructureRechercheFST.models.DTO.EncadrantLabel;
 import com.PFE.StructureRechercheFST.models.DTO.EnseignantName;
 import com.PFE.StructureRechercheFST.models.Enseignant;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +50,7 @@ public class EnseignantAdminController {
     }
 
     @GetMapping("/getNames")
-    public List<String> retournerName() {
+    public List<EncadrantLabel> retournerName() {
         return enseignant_admin.retournerName();
     }
 }

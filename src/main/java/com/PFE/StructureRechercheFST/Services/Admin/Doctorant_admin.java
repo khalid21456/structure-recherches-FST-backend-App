@@ -66,9 +66,9 @@ public class Doctorant_admin {
         Enseignant encadrant = enseignantDAO.findByNomContaining(lastName);
         doctorant.setThese(These);
         doctorant.setEncadrant(encadrant);
-        encadrant.setDoctorants(null);
-        These.setTheme(null);
-        encadrant.setPublications(null);
+//        encadrant.setDoctorants(null);
+
+//        encadrant.setPublications(null);
         doctorant.setDate_inscri(new Date());
         doctorant.setPassword(randomPasswordGenerator.generatePassword(10));
         if(doctorant.getProfile().equals("")) {

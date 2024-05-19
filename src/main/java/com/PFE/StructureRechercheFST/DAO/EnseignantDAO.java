@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
 public interface EnseignantDAO extends JpaRepository<Enseignant,Long> {
 
     Enseignant findByNomContaining(String nom);
-
+    Enseignant findEnseignantByEmailAndPassword(String email, String password);
 }

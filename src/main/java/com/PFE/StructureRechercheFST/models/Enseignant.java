@@ -25,20 +25,23 @@ public class Enseignant {
     private String password;
     private String tele;
     private String address;
-    private String labo;
     private Date dateEmbauche;
     private Date dateNaissance;
     private String profile;
 
-    @OneToMany(mappedBy = "enseignant")
+    @OneToMany(mappedBy = "enseignant", cascade = CascadeType.ALL)
     private List<Publication> publications;
 
-    @OneToMany(mappedBy = "encadrant")
+    @OneToMany(mappedBy = "encadrant", cascade = CascadeType.ALL)
     private List<Doctorant> doctorants;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "equipe")
     private Equipe equipe;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "Laboratoire")
+    private Laboratoire labo;
 
     public Enseignant() {
         super();

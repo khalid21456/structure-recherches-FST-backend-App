@@ -2,6 +2,8 @@ package com.PFE.StructureRechercheFST.models;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 import java.util.Date;
 
@@ -19,10 +21,12 @@ public class Publication {
 
     @ManyToOne
     @JoinColumn(name = "enseignant_publier")
+    @Cascade(CascadeType.ALL)
     private Enseignant enseignant;
 
     @ManyToOne
     @JoinColumn(name = "doctorant_publier")
+    @Cascade(CascadeType.ALL)
     private Doctorant doctorant;
 
 }

@@ -27,11 +27,10 @@ public class Equipe_Admin {
     @Autowired
     private Enseignant_admin enseignant_admin;
 
-    public List<Equipe> AjouterEquipe(Equipe equipe,String responsable) {
-        String[] names = responsable.split(" ");
-        String lastName = names[1];
-        Enseignant respo = enseignantDAO.findByNomContaining(lastName);
-        equipe.setResponsable(respo);
+    public List<Equipe> AjouterEquipe(Equipe equipe,int id) {
+
+        Enseignant enseignant =  enseignantDAO.findById(Long.parseLong(String.valueOf(id))).get();
+        equipe.setResponsable(enseignant);
         equipeDAO.save(equipe);
         return getEquipes();
     }

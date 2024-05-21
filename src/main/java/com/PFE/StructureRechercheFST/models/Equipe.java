@@ -4,6 +4,7 @@ package com.PFE.StructureRechercheFST.models;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
 
 import java.io.Serializable;
 import java.util.List;
@@ -16,10 +17,10 @@ public class Equipe implements Serializable {
     private Long id;
     private String nomEquipe;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     private Enseignant responsable;
 
-    @OneToMany(mappedBy = "equipe")
+    @OneToMany(mappedBy = "equipe", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Enseignant> membres;
 
     private String acronyme;

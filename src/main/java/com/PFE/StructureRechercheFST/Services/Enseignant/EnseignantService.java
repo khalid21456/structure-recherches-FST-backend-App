@@ -52,4 +52,8 @@ public class EnseignantService {
         List<Publication> allPublicationByEnseignant = publicationDAO.findByEnseignantId(enseignantId);
         return allPublicationByEnseignant.size();
     }
+    public int countAllEnseignant(){
+        List<Enseignant> countAllEnseignant = enseignantDAO.findAll();
+        return countAllEnseignant.size();
+    }
 }

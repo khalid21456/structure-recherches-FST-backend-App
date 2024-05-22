@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class DoctorantService {
@@ -24,5 +25,12 @@ public class DoctorantService {
         publication.setDatePub(new Date());
         publication.setDoctorant(doctorant);
         publicationDAO.save(publication);
+    }
+    public List<Publication> getAllPublicationsByDoctorantId(Long doctorantId) {
+        return publicationDAO.findByDoctorantId(doctorantId);
+    }
+    public int getAllDoctorant() {
+        List<Doctorant> allDoctorant = doctorantDAO.findAll();
+        return allDoctorant.size();
     }
 }

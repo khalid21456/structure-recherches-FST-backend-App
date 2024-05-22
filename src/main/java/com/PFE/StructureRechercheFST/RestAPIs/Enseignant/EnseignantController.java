@@ -57,4 +57,8 @@ public class EnseignantController {
       public int countPublicationByEnseignant(@PathVariable Long id){
         return enseignantService.coutPublicationByEnseignantId(id);
      }
+     @GetMapping("/AllEnseignant")
+     public int countAllEnseignant() {
+        return enseignantService.countAllEnseignant();
+     }
 }

@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface PublicationDAO extends JpaRepository<Publication,Long> {
     List<Publication> findByEnseignantId(Long enseignantId);
+    List<Publication> findByDoctorantId(Long doctorantId);
 }

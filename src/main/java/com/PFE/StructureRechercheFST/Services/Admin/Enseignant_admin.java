@@ -46,6 +46,7 @@ public class Enseignant_admin {
             tempEns = iterator.next();
             tempEns.setDoctorants(null);
             tempEns.setEquipe(null);
+            tempEns.setLabo(null);
             pubs = tempEns.getPublications();
             if(pubs!=null) {
                 iteratorPubs = pubs.iterator();
@@ -86,15 +87,14 @@ public class Enseignant_admin {
         List<Enseignant> enseignants = retournerToutEnseignant();
         List<EncadrantLabel> encadrantLabels = new ArrayList<EncadrantLabel>();
 
-        int i = 0;
         if(enseignants!=null) {
             Iterator<Enseignant> iterator = enseignants.iterator();
             Enseignant enseignant;
             while(iterator.hasNext()) {
-                i++;
+
                 EncadrantLabel encadrantLabelOne = new EncadrantLabel();
                 enseignant = iterator.next();
-                encadrantLabelOne.setValue(i);
+                encadrantLabelOne.setValue(Math.toIntExact(enseignant.getId()));
                 encadrantLabelOne.setLabel(enseignant.getPrenom()+" "+enseignant.getNom());
                 encadrantLabels.add(encadrantLabelOne);
             }

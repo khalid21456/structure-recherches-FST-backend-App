@@ -19,9 +19,9 @@ public class EquipeAdminController {
     @Autowired
     private Equipe_Admin equipeAdmin;
 
-    @PostMapping("/AjouterEquipe/{responsable}")
-    public List<Equipe> AjouterEquipe(@RequestBody Equipe equipe,@PathVariable String responsable) {
-        return equipeAdmin.AjouterEquipe(equipe,responsable);
+    @PostMapping("/AjouterEquipe/{id}")
+    public List<Equipe> AjouterEquipe(@RequestBody Equipe equipe,@PathVariable int id) {
+        return equipeAdmin.AjouterEquipe(equipe,id);
     }
 
     @GetMapping("/getAll")

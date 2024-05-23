@@ -39,7 +39,7 @@ public class ScopusResponse {
         private String author;
         @JsonProperty("prism:publicationName")
         private String publicationName;
-        @JsonProperty("prism:coverDate")
+        @JsonProperty("prism:coverDisplayDate")
         private String date_pub;
         @JsonProperty("link")
         private List<Link> links;

@@ -10,6 +10,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/Doctorant")
 @CrossOrigin
+@SuppressWarnings("unused")
 public class DoctorantController {
     @Autowired
     private DoctorantService doctorantService;

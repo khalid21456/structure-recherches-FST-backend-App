@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/Login")
 @CrossOrigin
+@SuppressWarnings("unused")
 public class LoginController {
     @Autowired
     private LoginService loginService;
@@ -23,6 +24,5 @@ public class LoginController {
         Enseignant enseignant = loginService.connectEnseignant(email, password);
         return ResponseEntity.ok(enseignant);
     }
-    //Connect Admin
 
 }

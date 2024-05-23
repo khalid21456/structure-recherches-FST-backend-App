@@ -44,6 +44,7 @@ public class Equipe_Admin {
             temp.getResponsable().setPublications(null);
             temp.getResponsable().setDoctorants(null);
             temp.getResponsable().setEquipe(null);
+            temp.getResponsable().setLabo(null);
             if(temp.getMembres()!=null) {
                 Iterator iterator1 = temp.getMembres().iterator();
                 Enseignant enseignant = null;

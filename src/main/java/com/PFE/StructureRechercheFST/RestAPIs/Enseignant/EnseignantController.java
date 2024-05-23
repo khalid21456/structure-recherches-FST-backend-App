@@ -61,4 +61,8 @@ public class EnseignantController {
      public int countAllEnseignant() {
         return enseignantService.countAllEnseignant();
      }
+     @GetMapping("/FindTop3Events")
+    public List<Evenement> getTheLatestEvents(){
+        return enseignantService.getTheLatestEvents();
+     }
 }

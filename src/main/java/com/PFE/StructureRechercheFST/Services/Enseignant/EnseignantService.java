@@ -56,4 +56,8 @@ public class EnseignantService {
         List<Enseignant> countAllEnseignant = enseignantDAO.findAll();
         return countAllEnseignant.size();
     }
+    public List<Evenement> getTheLatestEvents() {
+        List<Evenement> events = evenementDAO.findTop3();
+        return events;
+    }
 }

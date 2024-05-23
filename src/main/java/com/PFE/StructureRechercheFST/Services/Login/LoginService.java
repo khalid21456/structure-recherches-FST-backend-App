@@ -41,6 +41,8 @@ public class LoginService {
         List<Doctorant> enseignantDocs = enseignant.getDoctorants();
         enseignantDocs.forEach(d->{
             d.setEncadrant(null);
+            d.setPublications(null);
+            d.setThese(null);
         });
         enseignant.setEquipe(null);
         return enseignant;

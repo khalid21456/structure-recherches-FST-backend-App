@@ -65,4 +65,8 @@ public class EnseignantController {
     public List<Evenement> getTheLatestEvents(){
         return enseignantService.getTheLatestEvents();
      }
+     @GetMapping("/LatestEvent")
+     public List<Evenement> latestEvent() {
+        return enseignantService.getLatestEvent();
+     }
 }

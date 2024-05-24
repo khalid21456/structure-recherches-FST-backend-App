@@ -11,4 +11,6 @@ import java.util.List;
 public interface EvenementDAO extends JpaRepository<Evenement, Long> {
     @Query(value = "SELECT e FROM Evenement e ORDER BY e.id ASC")
     List<Evenement> findTop3();
+    @Query("SELECT e FROM Evenement e ORDER BY e.id DESC")
+    List<Evenement> findAllOrderByEventIdDesc();
 }

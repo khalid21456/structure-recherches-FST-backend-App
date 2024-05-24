@@ -60,4 +60,10 @@ public class EnseignantService {
         List<Evenement> events = evenementDAO.findTop3();
         return events;
     }
+    public List<Evenement> getLatestEvent(){
+        List<Evenement> events = evenementDAO.findAllOrderByEventIdDesc();
+        List<Evenement> latestEvents = events.subList(0, Math.min(events.size(), 3));
+        return latestEvents;
+    }
 }
+

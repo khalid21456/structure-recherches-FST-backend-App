@@ -65,5 +65,9 @@ public class EnseignantService {
         List<Evenement> latestEvents = events.subList(0, Math.min(events.size(), 3));
         return latestEvents;
     }
+    public int countEvents() {
+        List<Evenement> events = evenementDAO.findAll();
+        return events.size();
+    }
 }
 

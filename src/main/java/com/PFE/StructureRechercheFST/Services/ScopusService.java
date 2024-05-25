@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -27,28 +26,29 @@ public class ScopusService {
     private RestTemplate restTemplate;
 
     private static final Logger logger = Logger.getLogger(ScopusService.class.getName());
-//    public ScopusService(RestTemplate restTemplate) {
-//        this.restTemplate = restTemplate;
-//    }
 
-    public ScopusResponse getPublicationsByAuthor(String authorName) {
+
+    public List<ScopusResponse.Publication> getPublicationsByAuthor(String authorName) {
         String url = UriComponentsBuilder.fromHttpUrl(apiUrl)
                 .queryParam("query", "AUTHOR-NAME(" + authorName + ")")
                 .queryParam("apiKey", apiKey)
                 .toUriString();
         String rawResponse = restTemplate.getForObject(url, String.class);
         logger.info("Raw Scopus API Response: " + rawResponse);
-        return restTemplate.getForObject(url, ScopusResponse.class);
+        List<ScopusResponse.Publication> publications = new ArrayList<>();
+        publications = restTemplate.getForObject(url, ScopusResponse.class).getSearchResults().getPublications();
+        return publications;
     }
 
-    public List<ScopusResponse.Publication> getPublicationsByAuthors(List<String> authors) {
-        List<ScopusResponse.Publication> allPublications = new ArrayList<>();
-        for (String author : authors) {
-            ScopusResponse response = getPublicationsByAuthor(author);
-            if (response != null && response.getSearchResults() != null) {
-                allPublications.addAll(response.getSearchResults().getPublications());
-            }
-        }
-        return allPublications;
-    }
+//    public List<ScopusResponse.Publication> getPublicationsByAuthors(List<String> authors) {
+//        List<ScopusResponse.Publication> allPublications = new ArrayList<>();
+//        for (String author : authors) {
+//            ScopusResponse response = getPublicationsByAuthor(author);
+//            if (response != null && response.getSearchResults() != null) {
+//                allPublications.addAll(response.getSearchResults().getPublications());
+//            }
+//        }
+////        return allPublications.stream().limit(5).toList();
+//        return allPublications;
+//    }
 }

@@ -18,13 +18,13 @@ public class ScopusController {
 
     @GetMapping("/publications")
     @CrossOrigin(origins = "http://localhost:3000")
-    public ScopusResponse getPublications(@RequestParam String author) {
+    public List<ScopusResponse.Publication> getPublications(@RequestParam String author) {
         return scopusService.getPublicationsByAuthor(author);
     }
 
-    @PostMapping("/publications/byAuthors")
-    @CrossOrigin(origins = "http://localhost:3000")
-    public List<ScopusResponse.Publication> getPublicationsByAuthors(@RequestBody List<String> authors) {
-        return scopusService.getPublicationsByAuthors(authors);
-    }
+//    @PostMapping("/publications/byAuthors")
+//    @CrossOrigin(origins = "http://localhost:3000")
+//    public List<ScopusResponse.Publication> getPublicationsByAuthors(@RequestBody List<String> authors) {
+//        return scopusService.getPublicationsByAuthors(authors);
+//    }
 }

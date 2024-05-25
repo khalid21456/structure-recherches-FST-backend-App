@@ -43,18 +43,12 @@ public class ScopusResponse {
         private String date_pub;
         @JsonProperty("link")
         private List<Link> links;
-
+        @JsonProperty("subtypeDescription")
+        private String desc;
+        @JsonProperty("affiliation")
+        private List<affiliation>  affiliationList;
     }
 
-    @Data
-    public static class Author {
-        @JsonProperty("authname")
-        private String name;
-
-        @JsonProperty("authid")
-        private String id;
-
-    }
 
     @Data
     public static class Link {
@@ -62,5 +56,11 @@ public class ScopusResponse {
         private String ref;
         @JsonProperty("@href")
         private String href;
+    }
+
+    @Data
+    public static class affiliation {
+        @JsonProperty("affilname")
+        private String affilier;
     }
 }

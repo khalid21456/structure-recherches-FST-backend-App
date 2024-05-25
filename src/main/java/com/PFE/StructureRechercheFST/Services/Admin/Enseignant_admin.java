@@ -101,4 +101,18 @@ public class Enseignant_admin {
         }
         return encadrantLabels;
     }
+
+    public Enseignant getEnsById(Long id) {
+        List<Enseignant> enseignants = retournerToutEnseignant();
+        Enseignant enseignantId = null;
+
+        Iterator<Enseignant> iterator = enseignants.iterator();
+        while(iterator.hasNext()) {
+            Enseignant temp = (Enseignant) iterator.next();
+            if(temp.getId().equals(id)) {
+                return temp;
+            }
+        }
+        return enseignantId;
+    }
 }

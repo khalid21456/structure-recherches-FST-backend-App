@@ -2,6 +2,7 @@ package com.PFE.StructureRechercheFST.RestAPIs.Enseignant;
 
 
 import com.PFE.StructureRechercheFST.Services.Enseignant.EnseignantService;
+import com.PFE.StructureRechercheFST.models.Enseignant;
 import com.PFE.StructureRechercheFST.models.Evenement;
 import com.PFE.StructureRechercheFST.models.Publication;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,4 +74,6 @@ public class EnseignantController {
     public int countEvents() {
         return enseignantService.countEvents();
      }
+
+
 }

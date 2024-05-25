@@ -53,4 +53,9 @@ public class EnseignantAdminController {
     public List<EncadrantLabel> retournerName() {
         return enseignant_admin.retournerName();
     }
+
+    @GetMapping("/getById/{id}")
+    public Enseignant getById(@PathVariable Long id) {
+        return enseignant_admin.getEnsById(id);
+    }
 }

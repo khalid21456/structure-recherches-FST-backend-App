@@ -5,13 +5,14 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @SuppressWarnings("unused")
 @Data
 @NoArgsConstructor
-public class Laboratoire {
+public class Laboratoire implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +23,6 @@ public class Laboratoire {
     @OneToOne
     private Enseignant responsable;
 
-    @OneToMany(mappedBy = "labo")
+    @OneToMany(mappedBy = "labo",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Enseignant> membresLabo;
 }

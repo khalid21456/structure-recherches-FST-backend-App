@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 @RestController
 @SuppressWarnings("unused")
@@ -18,8 +19,26 @@ public class ScopusController {
 
     @GetMapping("/publications")
     @CrossOrigin(origins = "http://localhost:3000")
-    public List<ScopusResponse.Publication> getPublications(@RequestParam String author) {
+    public Stream<ScopusResponse.Publication> getPublications(@RequestParam String author) {
         return scopusService.getPublicationsByAuthor(author);
+    }
+
+    @GetMapping("/publicationsByAffil")
+    @CrossOrigin(origins = "http://localhost:3000")
+    public Stream<ScopusResponse.Publication> getPublicationsByAffilAndAuthor(@RequestParam String author, @RequestParam String affil) {
+        return scopusService.getPublicationsByAuthorAndAffiliation(author,affil);
+    }
+
+    @GetMapping("/publicationsByISSN")
+    @CrossOrigin(origins = "http://localhost:3000")
+    public Stream<ScopusResponse.Publication> getPublicationsByISSN(@RequestParam String issn) {
+        return scopusService.getPublicationsByISSN(issn);
+    }
+
+    @GetMapping("/publicationsByAffil2")
+    @CrossOrigin(origins = "http://localhost:3000")
+    public ScopusResponse getPublicationsByAffilAndAuthor2(@RequestParam String author,@RequestParam String affil) {
+        return scopusService.getPublicationsByAuthorAndAffiliation2(author,affil);
     }
 
 //    @PostMapping("/publications/byAuthors")

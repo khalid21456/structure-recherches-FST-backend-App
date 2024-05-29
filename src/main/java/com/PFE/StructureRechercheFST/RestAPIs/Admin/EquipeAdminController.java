@@ -49,4 +49,8 @@ public class EquipeAdminController {
         return equipeAdmin.getMembreChoices();
     }
 
+    @GetMapping("/countEquipes")
+    public int countEquipes() {
+        return equipeAdmin.countEquipes();
+    }
 }

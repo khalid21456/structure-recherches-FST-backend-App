@@ -11,6 +11,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -23,6 +24,9 @@ public class Laboratoire_Admin {
 
     @Autowired
     private EnseignantDAO enseignantDAO;
+
+    @Autowired
+    private Enseignant_admin enseignantAdmin;
 
     public List<Laboratoire> retournerTousLabos() {
         List<Laboratoire> list = laboratoireDAO.findAll();
@@ -75,24 +79,32 @@ public class Laboratoire_Admin {
     }
 
     @Transactional
-    public Laboratoire AjouterUnSeulMembre(EncadrantLabel name, Long id) {
+//    public List<Enseignant> AjouterUnSeulMembre(EncadrantLabel name, Long id) {
+//
+//        Enseignant membre = enseignantDAO.findById(Long.parseLong(String.valueOf(name.getValue()))).get();
+//        Laboratoire laboratoire = laboratoireDAO.findById(id).get();
+//        List<Enseignant> enseignants = enseignantAdmin.retournerToutEnseignant();
+//        List<Enseignant> enseignantListByLabo = new ArrayList<Enseignant>();
+//        membre.setLabo(laboratoire);
+////        List<Laboratoire> laboratoires = retournerTousLabos();
+//        Iterator<Enseignant> enseignantIterator = enseignants.iterator();
+//        while(enseignantIterator.hasNext()) {
+//            Enseignant temp = (Enseignant) enseignantIterator.next();
+//            if(temp.getLabo() != null && temp.getLabo().getId() == id ) {
+//                enseignantListByLabo.add(temp);
+//            }
+//        }
+//        return enseignantListByLabo;
+//    }
 
+    public void AjouterUnSeulMembre(EncadrantLabel name, Long id) {
         Enseignant membre = enseignantDAO.findById(Long.parseLong(String.valueOf(name.getValue()))).get();
-        Laboratoire laboratoire = laboratoireDAO.findById(id).get();
-        membre.setLabo(laboratoire);
-        List<Laboratoire> laboratoires = retournerTousLabos();
-        Iterator<Laboratoire> labos = laboratoires.iterator();
-        Laboratoire laboReturned = null;
-        while(labos.hasNext()) {
-            laboReturned = (Laboratoire) labos.next();
-            if(laboReturned.getId() == laboratoire.getId()) {
-                return laboReturned;
-            }
-        }
+        Laboratoire labo = laboratoireDAO.findById(id).get();
+        membre.setLabo(labo);
+    }
 
-        return null;
-
-
+    public int countLaboratoires() {
+        return laboratoireDAO.findAll().size();
     }
 
 

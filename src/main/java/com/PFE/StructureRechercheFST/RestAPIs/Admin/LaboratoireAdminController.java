@@ -36,8 +36,13 @@ public class LaboratoireAdminController {
     }
 
     @PostMapping("/addSeulMembre/{id}")
-    public Laboratoire AjouterUnSeulMembre(@RequestBody EncadrantLabel name, @PathVariable long id) {
-        return laboratoireAdmin.AjouterUnSeulMembre(name,id);
+    public void AjouterUnSeulMembre(@RequestBody EncadrantLabel name, @PathVariable long id) {
+         laboratoireAdmin.AjouterUnSeulMembre(name,id);
+    }
+
+    @GetMapping("/countLabos")
+    public int countLaboratoires() {
+        return laboratoireAdmin.countLaboratoires();
     }
 
 }

@@ -115,4 +115,8 @@ public class Equipe_Admin {
         return choices;
     }
 
+    public int countEquipes() {
+        return equipeDAO.findAll().size();
+    }
+
 }

@@ -54,7 +54,6 @@ public class Enseignant_admin {
             while(iteratorPubs.hasNext()) {
                 tempPub = iteratorPubs.next();
                 tempPub.setEnseignant(null);
-                tempPub.setDoctorant(null);
             }
             }
         }

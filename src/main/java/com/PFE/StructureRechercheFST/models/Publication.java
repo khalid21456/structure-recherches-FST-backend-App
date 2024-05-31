@@ -24,9 +24,5 @@ public class Publication {
     @Cascade(CascadeType.ALL)
     private Enseignant enseignant;
 
-    @ManyToOne
-    @JoinColumn(name = "doctorant_publier")
-    @Cascade(CascadeType.ALL)
-    private Doctorant doctorant;
 
 }

@@ -38,10 +38,8 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowedHeaders("*")
                 .allowCredentials(true);
     }
-
     @Bean
     public RestTemplate restTemplate() {
-
         return new RestTemplate();
     }
 }

@@ -1,7 +1,9 @@
 package com.PFE.StructureRechercheFST.Services.Login;
 
+import com.PFE.StructureRechercheFST.DAO.AdminDAO;
 import com.PFE.StructureRechercheFST.DAO.DoctorantDAO;
 import com.PFE.StructureRechercheFST.DAO.EnseignantDAO;
+import com.PFE.StructureRechercheFST.models.Admin;
 import com.PFE.StructureRechercheFST.models.Doctorant;
 import com.PFE.StructureRechercheFST.models.Enseignant;
 import com.PFE.StructureRechercheFST.models.Publication;
@@ -17,6 +19,8 @@ public class LoginService {
    private EnseignantDAO enseignantDAO;
     @Autowired
    private DoctorantDAO doctorantDAO;
+    @Autowired
+    private AdminDAO adminDAO;
 //    @Autowired
 //   private AdministrateurDAO administrateurDAO;
     public Doctorant connectDoctorant(String email, String password){
@@ -47,5 +51,9 @@ public class LoginService {
         });
         enseignant.setEquipe(null);
         return enseignant;
+    }
+    public Admin connectAdmin(String email, String password) {
+        Admin admin = adminDAO.findAdminByEmailAndPassword(email, password);
+        return admin;
     }
 }

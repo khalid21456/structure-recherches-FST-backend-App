@@ -1,6 +1,7 @@
 package com.PFE.StructureRechercheFST.RestAPIs.Login;
 
 import com.PFE.StructureRechercheFST.Services.Login.LoginService;
+import com.PFE.StructureRechercheFST.models.Admin;
 import com.PFE.StructureRechercheFST.models.Doctorant;
 import com.PFE.StructureRechercheFST.models.Enseignant;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,11 @@ public class LoginController {
     public ResponseEntity<Enseignant> connectEnseignant(@PathVariable String email, @PathVariable String password){
         Enseignant enseignant = loginService.connectEnseignant(email, password);
         return ResponseEntity.ok(enseignant);
+    }
+    @GetMapping("/ConnectAdmin/{email}/{password}")
+    public ResponseEntity<Admin> connectAdmin(@PathVariable String email, @PathVariable String password){
+        Admin admin = loginService.connectAdmin(email, password);
+        return ResponseEntity.ok(admin);
     }
 
 }

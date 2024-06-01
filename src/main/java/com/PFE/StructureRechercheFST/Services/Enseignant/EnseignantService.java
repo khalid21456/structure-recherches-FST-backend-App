@@ -45,7 +45,12 @@ public class EnseignantService {
      public List<Publication> getAllPublicationsByEnseignantId(Long enseignantId) {
            return publicationDAO.findByEnseignantId(enseignantId);
     }
-    public void organiser(Evenement evenement){
+    public void organiser(Evenement evenement, Long id){
+        Enseignant enseignant = null;
+        if(enseignantDAO.findById(id).isPresent()) {
+            enseignant = enseignantDAO.findById(id).get();
+        }
+        evenement.setEnseignant(enseignant);
         evenementDAO.save(evenement);
     }
     public int coutPublicationByEnseignantId(Long enseignantId) {
@@ -62,7 +67,10 @@ public class EnseignantService {
     }
     public List<Evenement> getLatestEvent(){
         List<Evenement> events = evenementDAO.findAllOrderByEventIdDesc();
-        List<Evenement> latestEvents = events.subList(0, Math.min(events.size(), 3));
+        List<Evenement> latestEvents = events.subList(0, Math.min(events.size(), 2));
+        latestEvents.forEach(e->{
+            e.setEnseignant(null);
+        });
         return latestEvents;
     }
     public int countEvents() {

@@ -30,7 +30,12 @@ public class EnseignantService {
 //        return publicationList;
 //    }
 
-    public void organiser(Evenement evenement){
+    public void organiser(Evenement evenement, Long id){
+        Enseignant enseignant = null;
+        if(enseignantDAO.findById(id).isPresent()) {
+            enseignant = enseignantDAO.findById(id).get();
+        }
+        evenement.setEnseignant(enseignant);
         evenementDAO.save(evenement);
     }
 

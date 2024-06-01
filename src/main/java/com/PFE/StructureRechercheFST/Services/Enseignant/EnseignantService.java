@@ -44,7 +44,11 @@ public class EnseignantService {
     }
     public List<Evenement> getLatestEvent(){
         List<Evenement> events = evenementDAO.findAllOrderByEventIdDesc();
-        List<Evenement> latestEvents = events.subList(0, Math.min(events.size(), 3));
+        List<Evenement> latestEvents = events.subList(0, Math.min(events.size(), 2));
+        latestEvents.forEach(e->{
+            e.setEnseignant(null
+            );
+        });
         return latestEvents;
     }
     public int countEvents() {

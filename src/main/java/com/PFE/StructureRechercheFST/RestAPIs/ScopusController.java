@@ -29,10 +29,10 @@ public class ScopusController {
         return scopusService.getPublicationsByAuthorAndAffiliation(author,affil);
     }
 
-    @GetMapping("/publicationsByISSN")
+    @GetMapping("/getPublicationsByAuthorError")
     @CrossOrigin(origins = "http://localhost:3000")
-    public Stream<ScopusResponse.Publication> getPublicationsByISSN(@RequestParam String issn) {
-        return scopusService.getPublicationsByISSN(issn);
+    public ScopusResponse getPublicationsByAuthorError(@RequestParam String author) {
+        return scopusService.getPublicationsByAuthorError(author);
     }
 
     @GetMapping("/publicationsByAffil2")

@@ -42,7 +42,7 @@ public class Theme_admin {
                 while(rechercheIterator.hasNext()) {
                     recherche = rechercheIterator.next();
                     recherche.setTheme(null);
-                    recherche.setCandidat(null);
+
                 }
             }
         }

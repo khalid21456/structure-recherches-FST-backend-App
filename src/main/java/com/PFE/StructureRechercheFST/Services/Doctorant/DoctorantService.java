@@ -12,23 +12,10 @@ import java.util.List;
 
 @Service
 public class DoctorantService {
-    @Autowired
-    private PublicationDAO publicationDAO;
+
     @Autowired
     private DoctorantDAO doctorantDAO;
 
-    public void publier(Publication publication, Long doctorantId){
-        Doctorant doctorant = null;
-        if(doctorantDAO.findById(doctorantId).isPresent()) {
-            doctorant = doctorantDAO.findById(doctorantId).get();
-        }
-        publication.setDatePub(new Date());
-        publication.setDoctorant(doctorant);
-        publicationDAO.save(publication);
-    }
-    public List<Publication> getAllPublicationsByDoctorantId(Long doctorantId) {
-        return publicationDAO.findByDoctorantId(doctorantId);
-    }
     public int getAllDoctorant() {
         List<Doctorant> allDoctorant = doctorantDAO.findAll();
         return allDoctorant.size();

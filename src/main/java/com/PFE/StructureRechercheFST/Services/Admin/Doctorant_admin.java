@@ -12,6 +12,7 @@ import com.PFE.StructureRechercheFST.models.Recherche;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -43,33 +44,23 @@ public class Doctorant_admin {
             tempDoc = iterator.next();
             tempDoc.getEncadrant().setPublications(null);
             tempDoc.getEncadrant().setDoctorants(null);
-//            tempDoc.setThese(null);
-            tempDoc.getThese().setTheme(null);
-            tempDoc.getThese().setCandidat(null);
-            pubs = tempDoc.getPublications();
-            if(pubs != null) {
-                iteratorPubs = pubs.iterator();
-                while (iteratorPubs.hasNext()) {
-                    tempPub = iteratorPubs.next();
-                    tempPub.setEnseignant(null);
-                    tempPub.setDoctorant(null);
-                }
+            if(tempDoc.getEncadrant().getLabo() != null) {
+                tempDoc.getEncadrant().getLabo().setResponsable(null);
+                tempDoc.getEncadrant().getLabo().setMembresLabo(null);
+            }
+            if(tempDoc.getEncadrant().getEquipe() != null) {
+                tempDoc.getEncadrant().getEquipe().setResponsable(null);
+                tempDoc.getEncadrant().getEquipe().setMembres(null);
             }
         }
         return list;
     }
 
-    public List<Doctorant> AjouterDoctorant(Doctorant doctorant,String name,String these) {
-        String[] names = name.split(" ");
-        String lastName = names[1];
-        Recherche These = rechercheDAO.findByTitre(these);
-        Enseignant encadrant = enseignantDAO.findByNomContaining(lastName);
-        doctorant.setThese(These);
-        doctorant.setEncadrant(encadrant);
-//        encadrant.setDoctorants(null);
+    public List<Doctorant> AjouterDoctorant(Doctorant doctorant,Long id) {
 
-//        encadrant.setPublications(null);
-        doctorant.setDate_inscri(new Date());
+        Enseignant encadrant = enseignantDAO.findById(id).get();
+        doctorant.setEncadrant(encadrant);
+        doctorant.setDate_inscri(new Date().toString());
         doctorant.setPassword(randomPasswordGenerator.generatePassword(10));
         if(doctorant.getProfile().equals("")) {
             doctorant.setProfile("userUnknown.png");
@@ -86,6 +77,22 @@ public class Doctorant_admin {
     public List<Doctorant> supprimerDoctorant(Long id) {
         doctorantDAO.deleteById(id);
         return retournerTousDoctorants();
+    }
+
+    public List<Doctorant> getDoctorantByEquipe(Long id) {
+        List<Doctorant> doctorants = retournerTousDoctorants();
+        List<Doctorant> doctorantList = new ArrayList<Doctorant>();
+        Iterator<Doctorant> iterator = doctorants.iterator();
+        while(iterator.hasNext()) {
+            Doctorant doctorant = iterator.next();
+            if(doctorant.getEncadrant().getEquipe()!=null) {
+                if(doctorant.getEncadrant().getEquipe().getId().equals(id)) {
+                    doctorantList.add(doctorant);
+                }
+            }
+
+        }
+        return doctorantList;
     }
 
 }

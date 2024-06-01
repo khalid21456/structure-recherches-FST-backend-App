@@ -35,7 +35,7 @@ public class Enseignant {
     @OneToMany(mappedBy = "encadrant", cascade = CascadeType.ALL)
     private List<Doctorant> doctorants;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "equipe")
     private Equipe equipe;
 

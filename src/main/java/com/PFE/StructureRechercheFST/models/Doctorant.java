@@ -19,7 +19,7 @@ public class Doctorant {
     private String prenom;
     private String email;
     private String password;
-    private Date date_inscri;
+    private String date_inscri;
     private String address;
     private String profile;
 
@@ -28,11 +28,8 @@ public class Doctorant {
     @JoinColumn(name = "encadrant")
     private Enseignant encadrant;
 
-    @OneToMany(mappedBy = "doctorant")
-    private List<Publication> publications;
 
-    @ManyToOne
-    @JoinColumn(name = "These")
-    private Recherche these;
+
+
 
 }

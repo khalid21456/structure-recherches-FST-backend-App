@@ -20,7 +20,7 @@ public class Equipe implements Serializable {
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     private Enseignant responsable;
 
-    @OneToMany(mappedBy = "equipe", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "equipe")
     private List<Enseignant> membres;
 
     private String acronyme;

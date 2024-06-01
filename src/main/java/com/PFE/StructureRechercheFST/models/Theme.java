@@ -21,4 +21,7 @@ public class Theme {
 
     @OneToMany(mappedBy = "theme")
     private List<Recherche> recherches;
+
+
+
 }

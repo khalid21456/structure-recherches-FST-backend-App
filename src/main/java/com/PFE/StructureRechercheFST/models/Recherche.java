@@ -21,6 +21,4 @@ public class Recherche implements Serializable {
     @JoinColumn(name = "theme")
     private Theme theme;
 
-    @OneToMany(mappedBy = "these")
-    private List<Doctorant> candidat;
 }

@@ -4,6 +4,7 @@ import com.PFE.StructureRechercheFST.models.DTO.ScopusResponse;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -12,6 +13,7 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
 
@@ -37,8 +39,6 @@ public class ScopusService {
                 .queryParam("query", "AUTHOR-NAME(" + authorName + ")")
                 .queryParam("apiKey", apiKey)
                 .toUriString();
-        String rawResponse = restTemplate.getForObject(url, String.class);
-        logger.info("Raw Scopus API Response: " + rawResponse);
         List<ScopusResponse.Publication> publications = new ArrayList<>();
         publications = restTemplate.getForObject(url, ScopusResponse.class).getSearchResults().getPublications();
         return publications.stream().limit(10);
@@ -75,37 +75,39 @@ public class ScopusService {
         return restTemplate.getForObject(url, ScopusResponse.class);
     }
 
-    public Stream<ScopusResponse.Publication> getPublicationsByISSN(String issn) {
-        String encodedIssn = URLEncoder.encode("EISSN(" + issn + ")", StandardCharsets.UTF_8);
+
+    public ScopusResponse getPublicationsByAuthorError(String author) {
+        String encodedIssn = URLEncoder.encode("AUTHOR-NAME(" + author + ")", StandardCharsets.UTF_8);
 
         String query = encodedIssn;
 
         String url = UriComponentsBuilder.fromHttpUrl(apiUrl)
-                .queryParam("query", "EISSN(" + issn + ")")
+                .queryParam("query", query)
                 .queryParam("apiKey", apiKey)
                 .toUriString();
-//        String url = UriComponentsBuilder.fromHttpUrl(apiUrl)
-//                .queryParam("query", query)
-//                .queryParam("apiKey", apiKey)
-//                .toUriString();
 
-        String rawResponse = restTemplate.getForObject(url, String.class);
-        logger.info("Raw Scopus API Response: " + rawResponse);
-        List<ScopusResponse.Publication> publications = new ArrayList<>();
-        publications = restTemplate.getForObject(url, ScopusResponse.class).getSearchResults().getPublications();
-        return publications.stream().limit(10);
+        logger.info("Request URL: " + url);
+
+        for (int i = 0; i < 3; i++) { // Retry up to 3 times
+            try {
+                ResponseEntity<ScopusResponse> response = restTemplate.getForEntity(url, ScopusResponse.class);
+                if (response.getStatusCode().is2xxSuccessful()) {
+                    return response.getBody();
+                } else {
+                    logger.info("Received non-2xx response: " + response.getStatusCode());
+                }
+            } catch (Exception e) {
+                if (i < 2) {
+                    try {
+                        TimeUnit.SECONDS.sleep(2); // Wait 2 seconds before retrying
+                    } catch (InterruptedException interruptedException) {
+                        Thread.currentThread().interrupt();
+                    }
+                }
+            }
+        }
+
+        return null; // Return null or throw an exception if all retries fail
     }
-
-
-//    public List<ScopusResponse.Publication> getPublicationsByAuthors(List<String> authors) {
-//        List<ScopusResponse.Publication> allPublications = new ArrayList<>();
-//        for (String author : authors) {
-//            ScopusResponse response = getPublicationsByAuthor(author);
-//            if (response != null && response.getSearchResults() != null) {
-//                allPublications.addAll(response.getSearchResults().getPublications());
-//            }
-//        }
-////        return allPublications.stream().limit(5).toList();
-//        return allPublications;
-//    }
 }
+

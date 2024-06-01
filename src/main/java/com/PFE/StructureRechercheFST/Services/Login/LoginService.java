@@ -25,15 +25,10 @@ public class LoginService {
 //   private AdministrateurDAO administrateurDAO;
     public Doctorant connectDoctorant(String email, String password){
        Doctorant doctorant = doctorantDAO.findDoctorantByEmailAndPassword(email, password);
-        List<Publication> doctorantPubs = doctorant.getPublications();
-        doctorantPubs.forEach(p->{
-            p.setEnseignant(null);
-            p.setDoctorant(null);
-        });
+
        doctorant.getEncadrant().setDoctorants(null);
        doctorant.setEncadrant(null);
 //     doctorant.setPublications(null);
-     doctorant.setThese(null);
        return doctorant;
     }
     public Enseignant connectEnseignant(String email, String password) {
@@ -41,13 +36,10 @@ public class LoginService {
         List<Publication> enseignantPubs = enseignant.getPublications();
         enseignantPubs.forEach(p->{
             p.setEnseignant(null);
-            p.setDoctorant(null);
         });
         List<Doctorant> enseignantDocs = enseignant.getDoctorants();
         enseignantDocs.forEach(d->{
             d.setEncadrant(null);
-            d.setPublications(null);
-            d.setThese(null);
         });
         enseignant.setEquipe(null);
         return enseignant;

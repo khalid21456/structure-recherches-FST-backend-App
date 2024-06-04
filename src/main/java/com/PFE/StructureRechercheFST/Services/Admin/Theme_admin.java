@@ -1,11 +1,13 @@
 package com.PFE.StructureRechercheFST.Services.Admin;
 
 import com.PFE.StructureRechercheFST.DAO.ThemeDAO;
+import com.PFE.StructureRechercheFST.models.DTO.StructureLabel;
 import com.PFE.StructureRechercheFST.models.Recherche;
 import com.PFE.StructureRechercheFST.models.Theme;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -48,5 +50,7 @@ public class Theme_admin {
         }
         return themeList;
     }
+
+
 
 }

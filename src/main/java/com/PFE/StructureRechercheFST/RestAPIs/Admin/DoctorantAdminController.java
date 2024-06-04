@@ -43,4 +43,9 @@ public class DoctorantAdminController {
         return doctorant_admin.getDoctorantByEquipe(id);
     }
 
+    @GetMapping("/getByLabo/{id}")
+    public List<Doctorant> getDoctorantByLabo(@PathVariable Long id) {
+        return doctorant_admin.getDoctorantByLabo(id);
+    }
+
 }

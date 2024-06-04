@@ -5,6 +5,7 @@ import com.PFE.StructureRechercheFST.DAO.EnseignantDAO;
 import com.PFE.StructureRechercheFST.DAO.EquipeDAO;
 import com.PFE.StructureRechercheFST.models.DTO.EncadrantLabel;
 import com.PFE.StructureRechercheFST.models.DTO.EnseignantName;
+import com.PFE.StructureRechercheFST.models.DTO.StructureLabel;
 import com.PFE.StructureRechercheFST.models.Enseignant;
 import com.PFE.StructureRechercheFST.models.Equipe;
 import jakarta.transaction.Transactional;
@@ -117,6 +118,18 @@ public class Equipe_Admin {
 
     public int countEquipes() {
         return equipeDAO.findAll().size();
+    }
+
+    public List<StructureLabel> retournerNoms() {
+        List<StructureLabel> names = new ArrayList<StructureLabel>();
+        List<Equipe> equipes = getEquipes();
+        Iterator<Equipe> iterator = equipes.iterator();
+        while(iterator.hasNext()) {
+            Equipe temp = (Equipe) iterator.next();
+            StructureLabel str = new StructureLabel(Math.toIntExact(temp.getId()), temp.getNomEquipe());
+            names.add(str);
+        }
+        return names;
     }
 
 }

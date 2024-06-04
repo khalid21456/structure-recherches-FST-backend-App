@@ -107,6 +107,18 @@ public class Equipe_Admin {
                 equipe = null;
             }
         }
+        if(equipe!=null) {
+            if(equipe.getThemes()!=null) {
+                Iterator<Theme> themeIterator = equipe.getThemes().iterator();
+                Theme theme = null;
+                while(themeIterator.hasNext()) {
+                    theme = (Theme)themeIterator.next();
+                    theme.setEquipe(null);
+                    theme.setLaboratoire(null);
+                }
+            }
+
+        }
         return equipe;
     }
 

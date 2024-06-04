@@ -20,8 +20,8 @@ public class ThemeAdmineController {
     @Autowired
     ImageController imageController;
 
-    @PostMapping("/AjouterTheme")
-    public List<Theme> AjouterTheme(@RequestBody Theme theme,@RequestParam String structure) {
+    @PostMapping("/AjouterTheme/{structure}")
+    public List<Theme> AjouterTheme(@RequestBody Theme theme,@PathVariable String structure) {
         return themeAdmin.AjouterTheme(theme,structure);
     }
 
@@ -34,4 +34,14 @@ public class ThemeAdmineController {
     public List<Theme> retournerTousLesThemes() {
         return themeAdmin.retournerTousLesThemes();
     }
+
+//    @GetMapping("/getThemeByEquipe/{id}")
+//    public List<Theme> getThemeByEquipe(@PathVariable Long id) {
+//        return themeAdmin.getThemesByEquipe(id);
+//    }
+//
+//    @GetMapping("/getThemeByLabo/{id}")
+//    public List<Theme> getThemeByLabo(@PathVariable Long id) {
+//        return themeAdmin.getThemesByLabo(id);
+//    }
 }

@@ -70,6 +70,16 @@ public class Theme_admin {
         return themeList;
     }
 
+//    public List<Theme> getThemesByEquipe(Long id) {
+//        List<Theme> themes = new ArrayList<Theme>();
+//        List<Equipe> equipes = retournerTousLesThemes()
+//        return themes;
+//    }
+//
+//    public List<Theme> getThemesByLabo(Long id) {
+//        List<Theme> themes = new ArrayList<Theme>();
+//        return themes;
+//    }
 
 
 }

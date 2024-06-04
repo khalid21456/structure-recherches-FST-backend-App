@@ -87,6 +87,18 @@ public class Laboratoire_Admin {
                 laboratoire = null;
             }
         }
+        if(laboratoire!=null) {
+            if(laboratoire.getThemes()!=null) {
+                Iterator<Theme> themeIterator = laboratoire.getThemes().iterator();
+                Theme theme = null;
+                while(themeIterator.hasNext()) {
+                    theme = (Theme)themeIterator.next();
+                    theme.setEquipe(null);
+                    theme.setLaboratoire(null);
+                }
+            }
+
+        }
         return laboratoire;
     }
 

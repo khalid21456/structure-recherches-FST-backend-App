@@ -11,4 +11,5 @@ public interface EnseignantDAO extends JpaRepository<Enseignant,Long> {
 
     Enseignant findByNomContaining(String nom);
     Enseignant findEnseignantByEmailAndPassword(String email, String password);
+    Enseignant findEnseignantByEmail(String email);
 }

@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AdminDAO extends JpaRepository<Admin,Long> {
     Admin findAdminByEmailAndPassword(String email, String password);
+    Admin findAdminByEmail(String email);
 }

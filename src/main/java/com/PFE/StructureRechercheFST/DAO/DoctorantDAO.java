@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DoctorantDAO extends JpaRepository<Doctorant,Long> {
     public Doctorant findDoctorantByEmailAndPassword(String email, String password);
+    Doctorant findDoctorantByEmail(String email);
 }

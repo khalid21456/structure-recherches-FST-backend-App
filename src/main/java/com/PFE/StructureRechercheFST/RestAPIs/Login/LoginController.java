@@ -30,5 +30,11 @@ public class LoginController {
         Admin admin = loginService.connectAdmin(email, password);
         return ResponseEntity.ok(admin);
     }
+    @GetMapping("/NewPassword/{email}")
+    public Object newPassword(@PathVariable String email){
+        Object object = null;
+        object = loginService.newPassword(email);
+        return object;
+    }
 
 }

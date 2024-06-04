@@ -22,6 +22,10 @@ public class Theme {
     @OneToMany(mappedBy = "theme")
     private List<Recherche> recherches;
 
+    @ManyToOne
+    private Equipe equipe;
 
+    @ManyToOne
+    private Laboratoire laboratoire;
 
 }

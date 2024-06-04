@@ -21,8 +21,8 @@ public class ThemeAdmineController {
     ImageController imageController;
 
     @PostMapping("/AjouterTheme")
-    public List<Theme> AjouterTheme(@RequestBody Theme theme) {
-        return themeAdmin.AjouterTheme(theme);
+    public List<Theme> AjouterTheme(@RequestBody Theme theme,@RequestParam String structure) {
+        return themeAdmin.AjouterTheme(theme,structure);
     }
 
     @DeleteMapping("/SupprimerTheme/{id}")

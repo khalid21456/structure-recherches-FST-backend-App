@@ -1,7 +1,11 @@
 package com.PFE.StructureRechercheFST.Services.Admin;
 
+import com.PFE.StructureRechercheFST.DAO.EquipeDAO;
+import com.PFE.StructureRechercheFST.DAO.LaboratoireDAO;
 import com.PFE.StructureRechercheFST.DAO.ThemeDAO;
 import com.PFE.StructureRechercheFST.models.DTO.StructureLabel;
+import com.PFE.StructureRechercheFST.models.Equipe;
+import com.PFE.StructureRechercheFST.models.Laboratoire;
 import com.PFE.StructureRechercheFST.models.Recherche;
 import com.PFE.StructureRechercheFST.models.Theme;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +22,22 @@ public class Theme_admin {
     @Autowired
     ThemeDAO themeDAO;
 
-    public List<Theme> AjouterTheme(Theme theme) {
+    @Autowired
+    EquipeDAO equipeDAO;
+
+    @Autowired
+    LaboratoireDAO laboratoireDAO;
+
+    public List<Theme> AjouterTheme(Theme theme, String structure) {
         if(theme.getImagePath().isEmpty()) {
             theme.setImagePath("noneTheme.png");
+        }
+        Equipe equipe = equipeDAO.findByNomEquipe(structure);
+        Laboratoire laboratoire = laboratoireDAO.findByNomLaboratoire(structure);
+        if(equipe != null) {
+            theme.setEquipe(equipe);
+        }else if(laboratoire != null) {
+            theme.setLaboratoire(laboratoire);
         }
         themeDAO.save(theme);
         return retournerTousLesThemes();
@@ -39,6 +56,8 @@ public class Theme_admin {
         Iterator<Recherche> rechercheIterator;
         while(themeIterator.hasNext()) {
             tempTheme = themeIterator.next();
+            tempTheme.setLaboratoire(null);
+            tempTheme.setEquipe(null);
             if(tempTheme.getRecherches()!=null) {
                 rechercheIterator = tempTheme.getRecherches().iterator();
                 while(rechercheIterator.hasNext()) {

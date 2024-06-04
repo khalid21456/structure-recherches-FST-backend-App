@@ -8,6 +8,7 @@ import com.PFE.StructureRechercheFST.models.DTO.StructureLabel;
 import com.PFE.StructureRechercheFST.models.Enseignant;
 import com.PFE.StructureRechercheFST.models.Equipe;
 import com.PFE.StructureRechercheFST.models.Laboratoire;
+import com.PFE.StructureRechercheFST.models.Theme;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,6 +51,16 @@ public class Laboratoire_Admin {
                         membre.setDoctorants(null);
                         membre.setPublications(null);
                         membre.setEquipe(null);
+                    }
+                }
+                if(labo.getThemes()!=null) {
+                    Iterator iterator2 = labo.getThemes().iterator();
+                    Theme theme = null;
+                    while(iterator2.hasNext()) {
+                        theme = (Theme) iterator2.next();
+                        theme.setEquipe(null);
+                        theme.setLaboratoire(null);
+                        theme.setRecherches(null);
                     }
                 }
             }

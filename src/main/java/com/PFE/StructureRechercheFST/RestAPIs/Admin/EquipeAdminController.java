@@ -3,6 +3,7 @@ package com.PFE.StructureRechercheFST.RestAPIs.Admin;
 
 import com.PFE.StructureRechercheFST.Services.Admin.Equipe_Admin;
 import com.PFE.StructureRechercheFST.models.DTO.EncadrantLabel;
+import com.PFE.StructureRechercheFST.models.DTO.StructureLabel;
 import com.PFE.StructureRechercheFST.models.Enseignant;
 import com.PFE.StructureRechercheFST.models.Equipe;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,5 +53,10 @@ public class EquipeAdminController {
     @GetMapping("/countEquipes")
     public int countEquipes() {
         return equipeAdmin.countEquipes();
+    }
+
+    @GetMapping("/getNames")
+    public List<StructureLabel> getNoms() {
+        return equipeAdmin.retournerNoms();
     }
 }

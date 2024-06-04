@@ -5,8 +5,10 @@ import com.PFE.StructureRechercheFST.DAO.EnseignantDAO;
 import com.PFE.StructureRechercheFST.DAO.EquipeDAO;
 import com.PFE.StructureRechercheFST.models.DTO.EncadrantLabel;
 import com.PFE.StructureRechercheFST.models.DTO.EnseignantName;
+import com.PFE.StructureRechercheFST.models.DTO.StructureLabel;
 import com.PFE.StructureRechercheFST.models.Enseignant;
 import com.PFE.StructureRechercheFST.models.Equipe;
+import com.PFE.StructureRechercheFST.models.Theme;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,6 +57,16 @@ public class Equipe_Admin {
                     enseignant.setEquipe(null);
                 }
             }
+            if(temp.getThemes()!=null) {
+                Iterator iterator2 = temp.getThemes().iterator();
+                Theme theme = null;
+                while(iterator2.hasNext()) {
+                    theme = (Theme) iterator2.next();
+                    theme.setEquipe(null);
+                    theme.setLaboratoire(null);
+                    theme.setRecherches(null);
+                }
+            }
 
         }
         return list;
@@ -95,6 +107,18 @@ public class Equipe_Admin {
                 equipe = null;
             }
         }
+        if(equipe!=null) {
+            if(equipe.getThemes()!=null) {
+                Iterator<Theme> themeIterator = equipe.getThemes().iterator();
+                Theme theme = null;
+                while(themeIterator.hasNext()) {
+                    theme = (Theme)themeIterator.next();
+                    theme.setEquipe(null);
+                    theme.setLaboratoire(null);
+                }
+            }
+
+        }
         return equipe;
     }
 
@@ -117,6 +141,18 @@ public class Equipe_Admin {
 
     public int countEquipes() {
         return equipeDAO.findAll().size();
+    }
+
+    public List<StructureLabel> retournerNoms() {
+        List<StructureLabel> names = new ArrayList<StructureLabel>();
+        List<Equipe> equipes = getEquipes();
+        Iterator<Equipe> iterator = equipes.iterator();
+        while(iterator.hasNext()) {
+            Equipe temp = (Equipe) iterator.next();
+            StructureLabel str = new StructureLabel(Math.toIntExact(temp.getId()), temp.getNomEquipe());
+            names.add(str);
+        }
+        return names;
     }
 
 }

@@ -95,4 +95,19 @@ public class Doctorant_admin {
         return doctorantList;
     }
 
+    public List<Doctorant> getDoctorantByLabo(Long id) {
+        List<Doctorant> doctorants = retournerTousDoctorants();
+        List<Doctorant> doctorantList = new ArrayList<Doctorant>();
+        Iterator<Doctorant> iterator = doctorants.iterator();
+        while(iterator.hasNext()) {
+            Doctorant doctorant = iterator.next();
+            if(doctorant.getEncadrant().getLabo()!=null) {
+                if(doctorant.getEncadrant().getLabo().getId().equals(id)) {
+                    doctorantList.add(doctorant);
+                }
+            }
+        }
+        return doctorantList;
+    }
+
 }

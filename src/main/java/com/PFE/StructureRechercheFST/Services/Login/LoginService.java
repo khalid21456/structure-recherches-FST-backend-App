@@ -34,9 +34,11 @@ public class LoginService {
 //   private AdministrateurDAO administrateurDAO;
     public Doctorant connectDoctorant(String email, String password){
        Doctorant doctorant = doctorantDAO.findDoctorantByEmailAndPassword(email, password);
+        if(doctorant != null) {
+            doctorant.getEncadrant().setDoctorants(null);
+            doctorant.setEncadrant(null);
+        }
 
-       doctorant.getEncadrant().setDoctorants(null);
-       doctorant.setEncadrant(null);
 //     doctorant.setPublications(null);
        return doctorant;
     }

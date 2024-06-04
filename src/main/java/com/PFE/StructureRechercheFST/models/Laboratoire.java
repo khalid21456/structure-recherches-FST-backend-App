@@ -25,4 +25,8 @@ public class Laboratoire implements Serializable {
 
     @OneToMany(mappedBy = "labo",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Enseignant> membresLabo;
+
+
+    @OneToMany(mappedBy = "laboratoire")
+    private List<Theme> themes;
 }

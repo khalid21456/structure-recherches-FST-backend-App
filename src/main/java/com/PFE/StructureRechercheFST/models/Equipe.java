@@ -25,4 +25,7 @@ public class Equipe implements Serializable {
 
     private String acronyme;
 
+    @OneToMany(mappedBy = "equipe")
+    private List<Theme> themes;
+
 }

@@ -3,6 +3,7 @@ package com.PFE.StructureRechercheFST.RestAPIs.Admin;
 
 import com.PFE.StructureRechercheFST.Services.Admin.Laboratoire_Admin;
 import com.PFE.StructureRechercheFST.models.DTO.EncadrantLabel;
+import com.PFE.StructureRechercheFST.models.DTO.StructureLabel;
 import com.PFE.StructureRechercheFST.models.Enseignant;
 import com.PFE.StructureRechercheFST.models.Laboratoire;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,12 @@ public class LaboratoireAdminController {
     @GetMapping("/countLabos")
     public int countLaboratoires() {
         return laboratoireAdmin.countLaboratoires();
+    }
+
+
+    @GetMapping("/getNames")
+    public List<StructureLabel> getNoms() {
+        return laboratoireAdmin.retournerNoms();
     }
 
 }

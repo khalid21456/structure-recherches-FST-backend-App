@@ -40,6 +40,8 @@ public class ScopusService {
                 .queryParam("apiKey", apiKey)
                 .toUriString();
         List<ScopusResponse.Publication> publications = new ArrayList<>();
+        String rawResponse = restTemplate.getForObject(url, String.class);
+        logger.info("Raw Scopus API Response: " + rawResponse);
         publications = restTemplate.getForObject(url, ScopusResponse.class).getSearchResults().getPublications();
         return publications.stream().limit(10);
     }

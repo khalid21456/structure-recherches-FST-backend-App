@@ -52,7 +52,12 @@ public class LoginService {
         enseignantDocs.forEach(d->{
             d.setEncadrant(null);
         });
-        enseignant.setEquipe(null);
+        enseignant.getEquipe().setMembres(null);
+        enseignant.getEquipe().setThemes(null);
+        enseignant.getEquipe().setResponsable(null);
+        enseignant.getLabo().setMembresLabo(null);
+        enseignant.getLabo().setThemes(null);
+        enseignant.getLabo().setResponsable(null);
         return enseignant;
     }
     public Admin connectAdmin(String email, String password) {

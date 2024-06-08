@@ -50,6 +50,10 @@ public class EnseignantController {
 //          });
 //                     return publicationList;
 //      }
+      @PostMapping("/updateEnseignant/{id}")
+      public Enseignant updateEnseignant(@PathVariable Long id, @RequestBody Enseignant enseignant){
+          return enseignantService.updateEnseignant(id, enseignant);
+      }
       @PostMapping("/organiser/{id}")
       public void organiserEvenement(@RequestBody Evenement evenement, @PathVariable Long id) {
         enseignantService.organiser(evenement, id);

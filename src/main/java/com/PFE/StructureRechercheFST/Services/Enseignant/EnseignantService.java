@@ -29,7 +29,19 @@ public class EnseignantService {
 //        List<Publication> publicationList = publicationDAO.findAllById(Collections.singleton(id));
 //        return publicationList;
 //    }
-
+    public Enseignant updateEnseignant(Long id, Enseignant enseignant){
+        Enseignant oldEnseignant = null;
+        if(enseignantDAO.findById(id).isPresent()){
+            oldEnseignant = enseignantDAO.findById(id).get();
+            oldEnseignant.setNom(enseignant.getNom());
+            oldEnseignant.setPrenom(enseignant.getPrenom());
+            oldEnseignant.setEmail(enseignant.getEmail());
+            oldEnseignant.setTele(enseignant.getTele());
+            oldEnseignant.setAddress(enseignant.getAddress());
+            enseignantDAO.save(oldEnseignant);
+        }
+        return oldEnseignant;
+    }
     public void organiser(Evenement evenement, Long id){
         Enseignant enseignant = null;
         if(enseignantDAO.findById(id).isPresent()) {

@@ -62,7 +62,7 @@ public class LoginService {
             enseignant.getLabo().setThemes(null);
             enseignant.getLabo().setResponsable(null);
         }
-        
+
         return enseignant;
     }
     public Admin connectAdmin(String email, String password) {

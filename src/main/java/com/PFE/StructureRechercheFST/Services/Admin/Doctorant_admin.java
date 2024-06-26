@@ -47,10 +47,12 @@ public class Doctorant_admin {
             if(tempDoc.getEncadrant().getLabo() != null) {
                 tempDoc.getEncadrant().getLabo().setResponsable(null);
                 tempDoc.getEncadrant().getLabo().setMembresLabo(null);
+                tempDoc.getEncadrant().getLabo().setThemes(null);
             }
             if(tempDoc.getEncadrant().getEquipe() != null) {
                 tempDoc.getEncadrant().getEquipe().setResponsable(null);
                 tempDoc.getEncadrant().getEquipe().setMembres(null);
+                tempDoc.getEncadrant().getEquipe().setThemes(null);
             }
         }
         return list;
